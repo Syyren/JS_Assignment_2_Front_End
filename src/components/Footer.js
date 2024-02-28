@@ -2,6 +2,10 @@
 export default function Footer()
 {
     return(
-        <p className="">Contact Manager Application Footer</p>
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2024 - Contact Manager Application - Ryan McGrandle - CPRO2211 C# Web Applications
+            </div>
+        </footer>
     )
 };
