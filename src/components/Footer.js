@@ -1,3 +1,4 @@
+//this function returns the footer for the layout
 export default function Footer()
 {
     return(

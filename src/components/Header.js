@@ -1,3 +1,4 @@
+//this function returns the header for the layout
 export default function Header()
 {
     return(
