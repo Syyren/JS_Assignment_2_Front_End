@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 
-export default function ContactDelete()
+export default function Home()
 {
     return(
         <Layout>

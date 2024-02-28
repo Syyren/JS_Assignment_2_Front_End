@@ -18,6 +18,7 @@ export default function App() { //setting the app routes
           <Route path="/contacts" element={ <Contacts /> } />
           <Route path="/contact/details" element={ <ContactDetails /> } />
           <Route path="/contact/delete" element={ <ContactDelete /> } />
+          <Route path="/contact/add" element={ <ContactEdit /> } />
           <Route path="/contact/edit" element={ <ContactEdit /> } />
           <Route path="*" element={ <NoPage /> } /> {/* All undefined routes will raise the 404 page here */}
         </Routes>
