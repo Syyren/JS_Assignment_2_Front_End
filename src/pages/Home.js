@@ -1,11 +1,10 @@
-import Header from "../components/Header";
+import Layout from "../components/Layout";
 
-export default function Home()
+export default function ContactDelete()
 {
     return(
-        <>
-            <Header />
-            <h2>Home Page</h2>
-        </>
+        <Layout>
+            <h2 className="display-4">Home Page</h2>
+        </Layout> 
     )
 }

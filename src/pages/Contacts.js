@@ -1,11 +1,10 @@
-import Header from "../components/Header";
+import Layout from "../components/Layout";
 
-export default function Contacts()
+export default function ContactDelete()
 {
     return(
-        <>
-            <Header />
-            <h2>Contacts Page</h2>
-        </>
+        <Layout>
+            <h2 className="display-4">Contacts Page</h2>
+        </Layout> 
     )
 }
