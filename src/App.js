@@ -8,8 +8,7 @@ import Home from './pages/Home'
 import NoPage from './pages/NoPage'
 
 export default function App() {
-  return 
-  (
+  return (
     <div>
       <BrowserRouter>
         <Routes>
@@ -25,4 +24,4 @@ export default function App() {
       </BrowserRouter>
     </div>
   );
-};
+}

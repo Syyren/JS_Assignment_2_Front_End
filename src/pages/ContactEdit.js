@@ -2,8 +2,7 @@ import Header from "../components/Header";
 
 export default function ContactEdit()
 {
-    return
-    (
+    return(
         <>
             <Header />
             <h2>Contact Edit/Add Page</h2>
