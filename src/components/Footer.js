@@ -4,7 +4,7 @@ export default function Footer()
     return(
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2024 - Contact Manager Application - Ryan McGrandle - CPRO2211 C# Web Applications
+                &copy; 2024 - Contact Manager Application - Ryan McGrandle - CPRO2101 Fullstack JavaScript
             </div>
         </footer>
     )
