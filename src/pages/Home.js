@@ -4,7 +4,7 @@ export default function ContactDelete()
 {
     return(
         <Layout>
-            <h2 className="display-4">Home Page</h2>
+            <h2 className="display-4 mb-4">Home Page</h2>
         </Layout> 
     )
 }
