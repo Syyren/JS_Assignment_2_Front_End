@@ -15,6 +15,7 @@ export const getContacts = async () =>
         email: contact.email,
         categoryID: contact.categoryID,
         organization: contact.organization,
+        dateCreated: contact.dateCreated,
         slug: "/" + contact.fName.split(' ').join('-').toLowerCase() + "-" + contact.lName.split(' ').join('-').toLowerCase()
       }));
     } 
@@ -24,3 +25,18 @@ export const getContacts = async () =>
       return [];
     }
 };
+
+export const getContact = async (contactID) =>
+{
+  try
+  {
+    const contact = await fetchContact(contactID);
+    console.log("Contact from API:", contact);
+    return contact;
+  }
+  catch (error) 
+  {
+    console.error('Error fetching contact:', error);
+    return [];
+  }
+}

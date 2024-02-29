@@ -6,11 +6,11 @@ export const fetchContacts = async () =>
   return response.json();
 };
 
-export const fetchContact = async ( {  } ) =>
+export const fetchContact = async (contactID) => 
 {
-  const response = await fetch(`${API_URL}/contacts/view/all`);
+  const response = await fetch(`${API_URL}/contacts/view/${contactID}`);
   return response.json();
-}
+};
 
 export const fetchCategories = async () => 
 {
