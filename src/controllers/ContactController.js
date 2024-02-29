@@ -26,11 +26,13 @@ export const getContacts = async () =>
     }
 };
 
-export const getContact = async (contactID) =>
+export const getContact = async (contactID, slug) =>
 {
   try
   {
     const contact = await fetchContact(contactID);
+    let contactSlug = contact.fName.split(' ').join('-').toLowerCase() + "-" + contact.lName.split(' ').join('-').toLowerCase();
+    if (contactSlug != slug) throw "slug invalid.";
     console.log("Contact from API:", contact);
     return contact;
   }
