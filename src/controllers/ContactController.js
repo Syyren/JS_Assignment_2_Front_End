@@ -14,7 +14,8 @@ export const getContacts = async () =>
         phone: contact.phone,
         email: contact.email,
         categoryID: contact.categoryID,
-        organization: contact.organization
+        organization: contact.organization,
+        slug: "/" + contact.fName.split(' ').join('-').toLowerCase() + "-" + contact.lName.split(' ').join('-').toLowerCase()
       }));
     } 
     catch (error) 

@@ -8,7 +8,7 @@ export const getCategories = async () =>
       console.log("Categories from API:", contacts);
       return contacts.map(category => 
       ({ 
-        contactID: category.categoryID, 
+        categoryID: category.categoryID, 
         categoryName: category.categoryName
       }));
     } 

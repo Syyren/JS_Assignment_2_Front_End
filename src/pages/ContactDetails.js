@@ -7,6 +7,7 @@ export default function ContactDetails()
         <Layout>
             <h2 className="display-4 mb-4">Contact Details Page</h2>
             <br />
+            
         </Layout>
     )
 }

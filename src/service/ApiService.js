@@ -8,7 +8,7 @@ export const fetchContacts = async () =>
 
 export const fetchContact = async ( {  } ) =>
 {
-  const response = await fetch(`${API_URL}/contacts/view/`+contactID);
+  const response = await fetch(`${API_URL}/contacts/view/all`);
   return response.json();
 }
 
