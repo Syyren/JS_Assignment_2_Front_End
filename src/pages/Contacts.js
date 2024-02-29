@@ -7,6 +7,8 @@ import { getCategories } from "../controllers/CategoryController";
 const Contacts = () => 
 {
     const [contacts, setContacts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    //using useEffect to gather the contacts data
     useEffect(() => 
     {
         async function fetchContactsData() 
@@ -15,6 +17,7 @@ const Contacts = () =>
           {
             const contactsData = await getContacts();
             setContacts(contactsData);
+            setLoading(false); //finishes loading and triggers the flag
           }
           catch(err)
           {
@@ -25,6 +28,7 @@ const Contacts = () =>
     }, []);
     
     const [categories, setCategories] = useState([]);
+    //using useEffect to gather the categories data
     useEffect(() => 
     {
         async function fetchCategoriesData() 
@@ -51,6 +55,10 @@ const Contacts = () =>
     return(
         <Layout>
             <h2 className="display-4 mb-4">Contacts Page</h2>
+            <Link className="btn btn-outline-primary me-2" to='/contact/add'>Add a Contact</Link>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
             <table className="table">
                 <thead>
                     <tr>
@@ -74,7 +82,8 @@ const Contacts = () =>
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> 
+            )}
         </Layout> 
     )
 }

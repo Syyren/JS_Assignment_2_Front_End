@@ -18,8 +18,8 @@ export default function App() { //setting the app routes
           <Route path="/contacts" element={ <Contacts /> } />
           <Route path="/contact/details/:contactID/:slug" element={ <ContactDetails /> } />
           <Route path="/contact/delete/:contactID/:slug" element={ <ContactDelete /> } />
-          <Route path="/contact/add" element={ <ContactEdit /> } />
-          <Route path="/contact/edit/:contactID/:slug" element={ <ContactEdit /> } />
+          <Route path="/contact/:action" element={ <ContactEdit action="add" /> } />
+          <Route path="/contact/:action/:contactID/:slug" element={ <ContactEdit action="edit"/> } />
           <Route path="*" element={ <NoPage /> } /> {/* All undefined routes will raise the 404 page here */}
         </Routes>
       </BrowserRouter>
