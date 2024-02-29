@@ -1,4 +1,4 @@
-import { fetchContacts } from '../service/ApiService'
+import { fetchContacts, fetchContact } from '../service/ApiService'
 
 export const getContacts = async () => 
 {

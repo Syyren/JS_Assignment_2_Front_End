@@ -28,15 +28,15 @@ const Contacts = () =>
     return(
         <Layout>
             <h2 className="display-4 mb-4">Contacts Page</h2>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Category</th>
-                        <th>Organization</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Organization</th>
                     </tr>
                 </thead>
                 <tbody>
