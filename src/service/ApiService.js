@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api'; //getting the api url
+const API_URL = 'http://localhost:8000/'; //setting the api url
 
 export const fetchContacts = async () => {
   const response = await fetch(`${API_URL}/contacts`);
