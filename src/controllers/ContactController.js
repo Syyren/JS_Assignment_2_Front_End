@@ -1,12 +1,25 @@
 import { fetchContacts } from '../service/ApiService'
 
-export const getContacts = async () => {
-    try {
+export const getContacts = async () => 
+{
+    try 
+    {
       const contacts = await fetchContacts();
-      return contacts.map(contact => ({ id: contact.id, fName: contact.fName, lName: contact.lName }));
+      console.log("Contacts from API:", contacts);
+      return contacts.map(contact => 
+      ({ 
+        contactID: contact.contactID, 
+        fName: contact.fName,
+        lName: contact.lName,
+        phone: contact.phone,
+        email: contact.email,
+        categoryID: contact.categoryID,
+        organization: contact.organization
+      }));
     } 
-    catch (error) {
+    catch (error) 
+    {
       console.error('Error fetching contacts:', error);
       return [];
     }
-  };
+};

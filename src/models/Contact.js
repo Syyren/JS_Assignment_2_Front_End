@@ -1,8 +1,8 @@
-class Contact {
-
-    constructor(id, fName, lName, phone, email, categoryID, organization)
+class Contact 
+{
+    constructor(contactID, fName, lName, phone, email, categoryID, organization)
     {
-        this.id = id;
+        this.contactID = contactID;
         this.fName = fName;
         this.lName = lName;
         this.phone = phone;
