@@ -8,10 +8,11 @@ const Contacts = () =>
 {
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
-    //using useEffect to gather the contacts data
+    const [categories, setCategories] = useState([]);
+    //using useEffect to gather the contacts and categories data
     useEffect(() => 
     {
-        async function fetchContactsData() 
+        const fetchContactsData = async () =>
         {
           try
           {
@@ -24,14 +25,8 @@ const Contacts = () =>
             console.error("Error fetching contact data:", err)
           }
         }
-        fetchContactsData();
-    }, []);
-    
-    const [categories, setCategories] = useState([]);
-    //using useEffect to gather the categories data
-    useEffect(() => 
-    {
-        async function fetchCategoriesData() 
+
+        const fetchCategoriesData = async () =>
         {
           try
           {
@@ -43,22 +38,25 @@ const Contacts = () =>
             console.error("Error fetching category data:", err)
           }
         }
+        
+        fetchContactsData(); //actually running the functions to grab data
         fetchCategoriesData();
     }, []);
 
+    //grabbing the category names via their ids
     const getCategoryName = (categoryId) => 
     {
       const category = categories.find(cat => cat.categoryID === categoryId);
       return category ? category.categoryName : 'NA';
     };
 
-    return(
+    return( //outputting the table with all gathered data once loaded
         <Layout>
             <h2 className="display-4 mb-4 text-center">Contacts Page</h2>
             <Link className="btn btn-outline-primary me-2" to='/contact/add'>Add a Contact</Link>
             {loading ? (
-                <p>Loading...</p>
-            ) : (
+                <p className="text-center">Loading...</p>
+            ) : contacts.length > 0 ? (
             <table className="table">
                 <thead>
                     <tr>
@@ -93,7 +91,9 @@ const Contacts = () =>
                     ))}
                 </tbody>
             </table> 
-            )}
+            ) : (
+              <p className="text-center">Contacts not found.</p>
+          )}
         </Layout> 
     )
 }

@@ -8,7 +8,7 @@ export default function About()
 
             <p className="text-center">
                 This web app is designed in React to interact with a back end programmed in
-                node.js and a database made on MongoDB. Creating a full stackMERN app. The 
+                node.js and a database made on MongoDB. Creating a fullstack MERN app. The 
                 app will then nicely and cleanly display a list of contacts that can be added 
                 to, edited, and deleted from.
             </p>

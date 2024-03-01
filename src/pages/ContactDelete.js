@@ -7,13 +7,15 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ContactDelete()
 {
-    const { contactID, slug } = useParams();
-    const [contact, setContact] = useState(null);
+    const { contactID, slug } = useParams(); //grabbing the ID and slug from the URL
+    const [contact, setContact] = useState(null); //establishing contact data
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    
     useEffect(() => 
     {
+        //grabbing the contact details to render the page with
         const fetchContactDetails = async () =>
         {
             try
@@ -31,11 +33,13 @@ export default function ContactDelete()
         fetchContactDetails();
     }, [contactID, slug]);
 
-    const handleSubmit = (event) =>
+    //on button click this will trigger and attempt to delete the contact entered
+    const handleSubmit = async (event) =>
     {
         try
         {
-            delContact(contact.contactID);
+            await delContact(contact.contactID);
+            alert(`${contact.fName} ${contact.lName} deleted successfully!`);
             navigate('/home');
         }
         catch(err)
@@ -50,7 +54,7 @@ export default function ContactDelete()
             {loading ? (
                 <p>Loading...</p>
             ) : contact && contact.contactID > 0 ? (
-                <div className="display-4 mb-4 text-center">
+                <div className="display-4 mb-4 text-center text-danger">
                     <h2>Delete {contact.fName} {contact.lName}?</h2>
                     <div>
                         <button 
@@ -66,7 +70,7 @@ export default function ContactDelete()
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className='text-center'>
                     <p>Contact not found.</p>
                     <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
                 </div>

@@ -87,11 +87,15 @@ export default function ContactEdit()
         {
             errors.phone = "Please enter a phone number.";
         }
+        if (phone.length > 11 || phone.length < 10)
+        {
+            errors.phone = "Please enter a valid phone number. (between 10 to 11 digits)";
+        }
         if (!email.trim()) 
         {
             errors.email = "Please enter an email address.";
         } 
-        else if (!/\S+@\S+\.\S+/.test(email)) 
+        else if (!/\S+@\S+\.\S+/.test(email)) //checks that the email entered follows email convention.
         {
             errors.email = "Entered email is invalid. Please enter a valid email address.";
         }
@@ -119,6 +123,7 @@ export default function ContactEdit()
                 console.log(action + 'ing contact:', updatedContact);
                 //calling the appropriate function based off the action
                 action === 'add' ? await addContact(updatedContact) : await editContact(contactID, updatedContact);
+                alert(`${fName} ${lName} ${action}ed successfully!`);
                 navigate('/home');
             }
             catch(err)
@@ -134,80 +139,88 @@ export default function ContactEdit()
                 {action === 'add' ? 'Add Contact' : 'Edit Contact'}
             </h2>
             {loading ? (
-                <p>Loading...</p>
-            ) : action === 'add' || (contact && contact.contactID > 0) ? (
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>First Name:</label>
-                    <input 
-                    type="text" 
-                    value={fName} 
-                    onChange={(e) => setFName(e.target.value)} 
-                    className="form-control"
-                    />
-                    {formErrors.fName && <div className="text-danger">{formErrors.fName}</div>}
+                <p className="text-center">Loading...</p>
+            ) : action === 'add' || contact.contactID > 0 ? (
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                        <form onSubmit={handleSubmit} className="p-4 border rounded">
+                            <div className="form-group">
+                                <label>First Name:</label>
+                                <input 
+                                type="text" 
+                                value={fName} 
+                                onChange={(e) => setFName(e.target.value)} 
+                                className="form-control"
+                                />
+                                {formErrors.fName && <div className="text-danger">{formErrors.fName}</div>}
+                            </div>
+                            <div className="form-group">
+                                <label>Last Name:</label>
+                                <input 
+                                type="text" value={lName} 
+                                onChange={(e) => setLName(e.target.value)} 
+                                className="form-control" 
+                                />
+                                {formErrors.lName && <div className="text-danger">{formErrors.lName}</div>}
+                            </div>
+                            <div className="form-group">
+                                <label>Phone:</label>
+                                <input 
+                                type="text" 
+                                value={phone} 
+                                onChange={(e) => setPhone(e.target.value)} 
+                                className="form-control" 
+                                />
+                                {formErrors.phone && <div className="text-danger">{formErrors.phone}</div>}
+                            </div>
+                            <div className="form-group">
+                                <label>Email:</label>
+                                <input
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                className="form-control"
+                                />
+                                {formErrors.email && <div className="text-danger">{formErrors.email}</div>}
+                            </div>
+                            <div className="form-group">
+                                <label>Category:</label>
+                                <select 
+                                value={categoryID} 
+                                onChange={(e) => setCategoryID(e.target.value)} 
+                                className="form-control"
+                                >
+                                    <option value="">Select Category</option>
+                                    {categories.map(category => (
+                                        <option key={category.categoryID} value={category.categoryID}>{category.categoryName}</option>
+                                    ))}
+                                </select>
+                                {formErrors.categoryID && <div className="text-danger">{formErrors.categoryID}</div>}
+                            </div>
+                            <div className="form-group mb-3">
+                                <label>Organization:</label>
+                                <input 
+                                type="text" 
+                                value={organization} 
+                                onChange={(e) => setOrganization(e.target.value)} 
+                                className="form-control" 
+                                />
+                                {formErrors.organization && <div className="text-danger">{formErrors.organization}</div>}
+                            </div>
+                            <div className='d-flex justify-content-center'>
+                                <button type="submit" className="btn btn-outline-primary me-2">{action === 'add' ? 'Add Contact' : 'Save Contact'}</button>
+                                {action === 'add' ? (
+                                    <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
+                                ) : (
+                                    <Link className="btn btn-outline-secondary me-2" to={'/contact/details/'+contactID+'/'+slug}>Back</Link>
+                                )}
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Last Name:</label>
-                    <input 
-                    type="text" value={lName} 
-                    onChange={(e) => setLName(e.target.value)} 
-                    className="form-control" 
-                    />
-                    {formErrors.lName && <div className="text-danger">{formErrors.lName}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Phone:</label>
-                    <input 
-                    type="text" 
-                    value={phone} 
-                    onChange={(e) => setPhone(e.target.value)} 
-                    className="form-control" 
-                    />
-                    {formErrors.phone && <div className="text-danger">{formErrors.phone}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    className="form-control"
-                    />
-                    {formErrors.email && <div className="text-danger">{formErrors.email}</div>}
-                </div>
-                <div className="form-group">
-                    <label>Category:</label>
-                    <select 
-                    value={categoryID} 
-                    onChange={(e) => setCategoryID(e.target.value)} 
-                    className="form-control"
-                    >
-                        <option value="">Select Category</option>
-                        {categories.map(category => (
-                            <option key={category.categoryID} value={category.categoryID}>{category.categoryName}</option>
-                        ))}
-                    </select>
-                    {formErrors.categoryID && <div className="text-danger">{formErrors.categoryID}</div>}
-                </div>
-                <div className="form-group mb-3">
-                    <label>Organization:</label>
-                    <input 
-                    type="text" 
-                    value={organization} 
-                    onChange={(e) => setOrganization(e.target.value)} 
-                    className="form-control" 
-                    />
-                    {formErrors.organization && <div className="text-danger">{formErrors.organization}</div>}
-                </div>
-                <button type="submit" className="btn btn-outline-primary me-2">{action === 'add' ? 'Add Contact' : 'Save Contact'}</button>
-                {action === 'add' ? (
-                    <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
-                ) : (
-                    <Link className="btn btn-outline-secondary me-2" to={'/contact/details/'+contactID+'/'+slug}>Back</Link>
-                )}
-            </form>
+            </div>
             ) : (
-                <p>Contact not found.</p>
+                <p className="text-center">Contact not found.</p>
             )}
         </Layout>
     );
