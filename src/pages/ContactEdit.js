@@ -7,6 +7,7 @@ import { getCategories } from '../controllers/CategoryController';
 export default function ContactEdit() 
 {
     const { action, contactID, slug } = useParams(); //retrieve the action, contactID and slug parameters from the URL
+    const [contact, setContact] = useState([]);
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [phone, setPhone] = useState('');
@@ -14,6 +15,7 @@ export default function ContactEdit()
     const [categoryID, setCategoryID] = useState('');
     const [organization, setOrganization] = useState('');
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => 
     {
@@ -37,14 +39,16 @@ export default function ContactEdit()
             {
                 try 
                 {
-                    const contact = await getContact(contactID, slug);
-                    console.log('contact:',contact);
-                    setFName(contact.fName);
-                    setLName(contact.lName);
-                    setPhone(contact.phone);
-                    setEmail(contact.email);
-                    setCategoryID(contact.categoryID);
-                    setOrganization(contact.organization);
+                    const contactDetails = await getContact(contactID, slug);
+                    console.log('contact:',contactDetails);
+                    setContact(contactDetails) //setting the contact state and all of the values for the form
+                    setFName(contactDetails.fName);
+                    setLName(contactDetails.lName);
+                    setPhone(contactDetails.phone);
+                    setEmail(contactDetails.email);
+                    setCategoryID(contactDetails.categoryID);
+                    setOrganization(contactDetails.organization);
+                    setLoading(false); //setting loading to false to display the form
                 } 
                 catch (error) 
                 {
@@ -52,6 +56,10 @@ export default function ContactEdit()
                 }   
             };
             fetchContactDetails();
+        }
+        else
+        {
+            setLoading(false); //sets the loading to false if the action is add
         }
     }, [action, contactID, slug]);
 
@@ -66,6 +74,9 @@ export default function ContactEdit()
             <h2 className="display-4 mb-4">
                 {action === 'add' ? 'Add Contact' : 'Edit Contact'}
             </h2>
+            {loading ? (
+                <p>Loading...</p>
+            ) : action === 'add' || (contact && contact.contactID > 0) ? (
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>First Name:</label>
@@ -92,17 +103,20 @@ export default function ContactEdit()
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                     <label>Organization:</label>
                     <input type="text" value={organization} onChange={(e) => setOrganization(e.target.value)} className="form-control" />
                 </div>
-                <button type="submit" className="btn btn-outline-primary">{action === 'add' ? 'Add' : 'Save'}</button>
+                <button type="submit" className="btn btn-outline-primary me-2">{action === 'add' ? 'Add' : 'Save'}</button>
                 {action === 'add' ? (
-                    <Link className="btn btn-outline-secondary" to='/contacts'>Back</Link>
+                    <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
                 ) : (
-                    <Link className="btn btn-outline-secondary" to={'/contact/details/'+contactID+'/'+slug}>Back</Link>
+                    <Link className="btn btn-outline-secondary me-2" to={'/contact/details/'+contactID+'/'+slug}>Back</Link>
                 )}
             </form>
+            ) : (
+                <p>Contact not found.</p>
+            )}
         </Layout>
     );
 }

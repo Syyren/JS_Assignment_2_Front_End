@@ -6,9 +6,9 @@ import { getCategories } from '../controllers/CategoryController';
 
 export default function ContactDetails()
 {
+    const { contactID, slug } = useParams();
     const [contact, setContact] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { contactID, slug } = useParams();
 
     useEffect(() => 
     {
@@ -74,6 +74,7 @@ export default function ContactDetails()
                     <div>
                         <Link className="btn btn-outline-primary me-2" to={'/contact/edit/'+contact.contactID+'/'+slug}>Edit</Link>
                         <Link className="btn btn-outline-danger me-2" to={'/contact/delete/'+contact.contactID+'/'+slug}>Delete</Link>
+                        <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
                     </div>
                 </div>
             ) : (
