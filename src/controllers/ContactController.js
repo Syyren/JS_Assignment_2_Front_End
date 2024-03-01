@@ -50,6 +50,7 @@ export const addContact = async (contactData) =>
 {
   try
   {
+    contactData.dateCreated = Date.now;
     createContact(contactData);
     console.log("Contact added successfully");
   }

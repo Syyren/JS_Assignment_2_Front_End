@@ -16,7 +16,9 @@ export const fetchContact = async (contactID) =>
 };
 
 //function that creates a new contact in the database
-export const createContact = async (contactData) => {
+export const createContact = async (contactData) => 
+{
+  console.log('Api Service Layer Contact:', contactData);
   const response = await fetch(`${API_URL}/contacts/add`, {
     method: 'POST',
     headers: {

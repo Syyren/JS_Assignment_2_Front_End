@@ -78,7 +78,7 @@ export default function ContactDetails()
                     </div>
                 </div>
             ) : (
-                <p>Contact not found</p>
+                <p>No data found.</p>
             )}
         </Layout>
     )
