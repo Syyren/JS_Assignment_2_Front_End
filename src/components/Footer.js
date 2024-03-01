@@ -2,8 +2,8 @@
 export default function Footer()
 {
     return(
-        <footer class="border-top footer text-muted">
-            <div class="container">
+        <footer className="border-top footer text-muted">
+            <div className="container">
                 &copy; 2024 - Contact Manager Application - Ryan McGrandle - CPRO2101 Fullstack JavaScript
             </div>
         </footer>
