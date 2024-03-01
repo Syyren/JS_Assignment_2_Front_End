@@ -6,3 +6,4 @@ Install any dependencies listed if you want to run it for yourself.
 ## Dependencies:
 
 - react-router-dom
+- bootstrap
