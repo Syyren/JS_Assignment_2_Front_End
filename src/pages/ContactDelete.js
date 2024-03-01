@@ -46,17 +46,25 @@ export default function ContactDelete()
 
     return( //body loads before displaying either the delete page or a contact not found message.
         <Layout>
-            <h2 className="display-4 mb-4">Contact Delete Page</h2>
+            <h2 className="display-4 mb-4 text-center">Contact Delete Page</h2>
             {loading ? (
                 <p>Loading...</p>
             ) : contact && contact.contactID > 0 ? (
-                <>
+                <div className="display-4 mb-4 text-center">
                     <h2>Delete {contact.fName} {contact.lName}?</h2>
                     <div>
-                        <button onClick={handleSubmit} className="btn btn-outline-danger me-2">Delete</button>
-                        <Link className="btn btn-outline-secondary me-2" to={'/contact/details/'+contactID+'/'+slug}>Back</Link>
+                        <button 
+                        onClick={handleSubmit} 
+                        className="btn btn-outline-danger me-2">
+                            Delete
+                        </button>
+                        <Link 
+                        className="btn btn-outline-secondary me-2" 
+                        to={'/contact/details/'+contactID+'/'+slug}>
+                            Back
+                        </Link>
                     </div>
-                </>
+                </div>
             ) : (
                 <div>
                     <p>Contact not found.</p>

@@ -54,7 +54,7 @@ const Contacts = () =>
 
     return(
         <Layout>
-            <h2 className="display-4 mb-4">Contacts Page</h2>
+            <h2 className="display-4 mb-4 text-center">Contacts Page</h2>
             <Link className="btn btn-outline-primary me-2" to='/contact/add'>Add a Contact</Link>
             {loading ? (
                 <p>Loading...</p>
@@ -73,8 +73,18 @@ const Contacts = () =>
                 <tbody>
                     {contacts.map(contact => (
                         <tr key={contact.contactID}>
-                            <td><Link to={'/contact/details/'+contact.contactID+contact.slug}>{contact.fName}</Link></td>
-                            <td><Link to={'/contact/details/'+contact.contactID+contact.slug}>{contact.lName}</Link></td>
+                            <td><Link 
+                            className="btn btn-outline-primary me-2" 
+                            style={{width: '100%'}} 
+                            to={'/contact/details/'+contact.contactID+contact.slug}>
+                              {contact.fName}
+                            </Link></td>
+                            <td><Link 
+                            className="btn btn-outline-primary me-2"
+                            style={{width: '100%'}}
+                            to={'/contact/details/'+contact.contactID+contact.slug}>
+                              {contact.lName}
+                            </Link></td>
                             <td>{contact.phone}</td>
                             <td>{contact.email}</td>
                             <td>{getCategoryName(contact.categoryID)}</td>

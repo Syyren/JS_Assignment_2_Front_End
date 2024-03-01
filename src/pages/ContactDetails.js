@@ -59,26 +59,38 @@ export default function ContactDetails()
 
     return(
         <Layout>
-            <h2 className="display-4 mb-4">Contact Details Page</h2>
+            <h2 className="display-4 mb-4 text-center">Contact Details Page</h2>
             <br />
             {loading ? (
                 <p>Loading...</p>
             ) : contact && contact.contactID > 0 ? (
-                <div>
-                    <p>Name: {contact.fName} {contact.lName}</p>
-                    <p>Phone: {contact.phone}</p>
-                    <p>Email: {contact.email}</p>
-                    <p>Category: {getCategoryName(contact.categoryID)}</p>
-                    <p>Organization: {contact.organization}</p>
-                    <p>Date Added: {contact.dateCreated}</p>
+                <div className="text-center">
+                    <p><strong>Name:</strong><br />{contact.fName} {contact.lName}</p>
+                    <p><strong>Phone:</strong><br />{contact.phone}</p>
+                    <p><strong>Email:</strong><br />{contact.email}</p>
+                    <p><strong>Category:</strong><br />{getCategoryName(contact.categoryID)}</p>
+                    <p><strong>Organization:</strong><br />{contact.organization}</p>
+                    <p className='mb-4'><strong>Date Added:</strong><br />{contact.dateCreated}</p>
                     <div>
-                        <Link className="btn btn-outline-primary me-2" to={'/contact/edit/'+contact.contactID+'/'+slug}>Edit</Link>
-                        <Link className="btn btn-outline-danger me-2" to={'/contact/delete/'+contact.contactID+'/'+slug}>Delete</Link>
-                        <Link className="btn btn-outline-secondary me-2" to='/contacts'>Back</Link>
+                        <Link 
+                        className="btn btn-outline-primary me-2"
+                        to={'/contact/edit/'+contact.contactID+'/'+slug}>
+                            Edit
+                        </Link>
+                        <Link 
+                        className="btn btn-outline-danger me-2" 
+                        to={'/contact/delete/'+contact.contactID+'/'+slug}>
+                            Delete
+                        </Link>
+                        <Link 
+                        className="btn btn-outline-secondary me-2" 
+                        to='/contacts'>
+                            Back
+                        </Link>
                     </div>
                 </div>
             ) : (
-                <p>No data found.</p>
+                <p>Contact not found</p>
             )}
         </Layout>
     )

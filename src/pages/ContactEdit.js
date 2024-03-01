@@ -69,6 +69,7 @@ export default function ContactEdit()
         }
     }, [action, contactID, slug]);
 
+    //on button click this will trigger to submit the form
     const handleSubmit = async (event) => 
     {
         event.preventDefault();
@@ -105,6 +106,7 @@ export default function ContactEdit()
         {
             try
             {
+                //making the new data to be fed through
                 const updatedContact = {
                     ...contact,
                     fName: fName,
@@ -128,7 +130,7 @@ export default function ContactEdit()
 
     return ( //checks if the action was add or edit and then renders the page accordingly after loading.
         <Layout>
-            <h2 className="display-4 mb-4">
+            <h2 className="display-4 mb-4 text-center">
                 {action === 'add' ? 'Add Contact' : 'Edit Contact'}
             </h2>
             {loading ? (

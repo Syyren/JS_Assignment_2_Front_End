@@ -4,9 +4,9 @@ export default function About()
 {
     return(
         <Layout>
-            <h2 className="display-4 mb-4">About Page</h2>
+            <h2 className="display-4 mb-4 text-center">About Page</h2>
 
-            <p className="">
+            <p className="text-center">
                 This web app is designed to interact with a back end programmed in
                 node.js and a database made on MongoDB. Creating a full stack
                 MERN app. The app will then nicely and cleanly display a list of
