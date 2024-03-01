@@ -65,11 +65,19 @@ export default function ContactEdit()
 
     const handleSubmit = (event) => 
     {
+        if (action === 'add')
+        {
+            console.log("add")
+        }
+        else
+        {
+            console.log("edit")
+        }
         event.preventDefault();
         // Form submission logic, either add or edit contact
     };
 
-    return (
+    return ( //checks if the action was add or edit and then renders the page accordingly after loading.
         <Layout>
             <h2 className="display-4 mb-4">
                 {action === 'add' ? 'Add Contact' : 'Edit Contact'}
