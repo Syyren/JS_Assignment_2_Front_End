@@ -1,5 +1,6 @@
 import { fetchContacts, fetchContact } from '../service/ApiService'
 
+//method that interfaces with the ApiService layer to get all contacts in the database
 export const getContacts = async () => 
 {
     try 
@@ -26,6 +27,7 @@ export const getContacts = async () =>
     }
 };
 
+//method that interfaces with the ApiService layer to get a contact from the database
 export const getContact = async (contactID, slug) =>
 {
   try
@@ -36,9 +38,48 @@ export const getContact = async (contactID, slug) =>
     console.log("Contact from API:", contact);
     return contact;
   }
-  catch (error) 
+  catch (err) 
   {
-    console.error('Error fetching contact:', error);
+    console.error('Error fetching contact:', err);
     return [];
+  }
+}
+
+//method that interfaces witht he ApiService to save a new contact
+export const createContact = async () =>
+{
+  try
+  {
+    console.log("Blank");
+  }
+  catch(err)
+  {
+    console.error('Error saving contact:', err)
+  }
+}
+
+//method that interfaces witht he ApiService to update a contact
+export const updateContact = async (contactID) =>
+{
+  try
+  {
+    console.log("Blank");
+  }
+  catch(err)
+  {
+    console.error('Error saving contact:', err)
+  }
+}
+
+//method that interfaces witht he ApiService to delete a contact
+export const deleteContact = async (contactID) =>
+{
+  try
+  {
+    console.log("Blank");
+  }
+  catch(err)
+  {
+    console.error('Error saving contact:', err)
   }
 }
