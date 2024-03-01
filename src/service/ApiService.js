@@ -15,10 +15,44 @@ export const fetchContact = async (contactID) =>
   return response.json();
 };
 
+//function that creates a new contact in the database
+export const createContact = async (contactData) => {
+  const response = await fetch(`${API_URL}/contacts/add`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(contactData)
+  });
+  //checking if the creation went through properly
+  if (!response.ok) {
+    throw new Error('Failed to create contact');
+  }
+};
+
+//function that updates a contact in the database
+export const updateContact = async (contactID, updatedContactData) => 
+{
+  const response = await fetch(`${API_URL}/contacts/update/${contactID}`, 
+  {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedContactData)
+  });
+  //checking if the update went through properly
+  if (!response.ok) 
+  {
+    throw new Error('Failed to update contact');
+  }
+};
+
 //function that deletes a contact from the database
 export const deleteContact = async (contactID) => 
 {
-  const response = await fetch(`${API_URL}/contacts/del/${contactID}`, {
+  const response = await fetch(`${API_URL}/contacts/del/${contactID}`, 
+  {
     method: 'DELETE'
   });
   //checking if the deletion went through properly
@@ -26,7 +60,6 @@ export const deleteContact = async (contactID) =>
   {
     throw new Error('Failed to delete contact');
   }
-  console.log('Contact deleted successfully.');
 };
 
 //function that returns all categories in the database

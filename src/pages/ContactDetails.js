@@ -21,9 +21,9 @@ export default function ContactDetails()
                 setContact(contactDetails);
                 setLoading(false);
             } 
-            catch (error) 
+            catch (err) 
             {
-                console.error('Error fetching contact details:', error);
+                console.error('Error fetching contact details:', err);
             }
         };
 

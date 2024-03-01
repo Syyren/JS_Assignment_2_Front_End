@@ -1,4 +1,4 @@
-import { fetchContacts, fetchContact } from '../service/ApiService'
+import { fetchContacts, fetchContact, createContact, updateContact, deleteContact } from '../service/ApiService'
 
 //method that interfaces with the ApiService layer to get all contacts in the database
 export const getContacts = async () => 
@@ -20,9 +20,9 @@ export const getContacts = async () =>
         slug: "/" + contact.fName.split(' ').join('-').toLowerCase() + "-" + contact.lName.split(' ').join('-').toLowerCase()
       }));
     } 
-    catch (error) 
+    catch (err) 
     {
-      console.error('Error fetching contacts:', error);
+      console.error('Error fetching contacts:', err);
       return [];
     }
 };
@@ -46,11 +46,12 @@ export const getContact = async (contactID, slug) =>
 }
 
 //method that interfaces witht he ApiService to save a new contact
-export const createContact = async () =>
+export const addContact = async (contactData) =>
 {
   try
   {
-    console.log("Blank");
+    createContact(contactData);
+    console.log("Contact added successfully");
   }
   catch(err)
   {
@@ -59,11 +60,12 @@ export const createContact = async () =>
 }
 
 //method that interfaces witht he ApiService to update a contact
-export const updateContact = async (contactID) =>
+export const editContact = async (contactID, contactData) =>
 {
   try
   {
-    console.log("Blank");
+    updateContact(contactID, contactData)
+    console.log("Contact edited successfully");
   }
   catch(err)
   {
@@ -72,11 +74,12 @@ export const updateContact = async (contactID) =>
 }
 
 //method that interfaces witht he ApiService to delete a contact
-export const deleteContact = async (contactID) =>
+export const delContact = async (contactID) =>
 {
   try
   {
-    console.log("Blank");
+    deleteContact(contactID)
+    console.log("Contact deleted successfully");
   }
   catch(err)
   {
