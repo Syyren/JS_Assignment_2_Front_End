@@ -7,7 +7,7 @@ export const getContacts = async () =>
     {
       const contacts = await fetchContacts();
       console.log("Contacts from API:", contacts);
-      return contacts.map(contact => 
+      return contacts.map(contact => //returns a list of contacts with all their attributes tied to values
       ({ 
         contactID: contact.contactID, 
         fName: contact.fName,
@@ -36,12 +36,12 @@ export const getContact = async (contactID, slug) =>
     let contactSlug = contact.fName.split(' ').join('-').toLowerCase() + "-" + contact.lName.split(' ').join('-').toLowerCase();
     if (contactSlug != slug) throw "slug invalid.";
     console.log("Contact from API:", contact);
-    return contact;
+    return contact; //sends back the contact
   }
   catch (err) 
   {
     console.error('Error fetching contact:', err);
-    return [];
+    return []; //outputs an error and returns blank if one is caught
   }
 }
 
@@ -51,12 +51,12 @@ export const addContact = async (contactData) =>
   try
   {
     contactData.dateCreated = Date.now;
-    createContact(contactData);
+    createContact(contactData); //stores the contact through the ApiService
     console.log("Contact added successfully");
   }
   catch(err)
   {
-    console.error('Error saving contact:', err)
+    console.error('Error creating contact:', err) //outputs in the event of an error creating the contact
   }
 }
 
@@ -65,12 +65,12 @@ export const editContact = async (contactID, contactData) =>
 {
   try
   {
-    updateContact(contactID, contactData)
+    updateContact(contactID, contactData) //updates the contact through the ApiService
     console.log("Contact edited successfully");
   }
   catch(err)
   {
-    console.error('Error saving contact:', err)
+    console.error('Error saving contact:', err) //outputs in the event of an error updating the contact
   }
 }
 
@@ -79,11 +79,11 @@ export const delContact = async (contactID) =>
 {
   try
   {
-    deleteContact(contactID)
+    deleteContact(contactID) //deletes the contact through the ApiService
     console.log("Contact deleted successfully");
   }
   catch(err)
   {
-    console.error('Error saving contact:', err)
+    console.error('Error saving contact:', err) //outputs in the event of an error updating the contact
   }
 }
